@@ -1,0 +1,71 @@
+{
+  "interactionModel": {
+      "languageModel": {
+          "invocationName": "skill blaster",
+          "intents": [
+              {
+                  "name": "AMAZON.CancelIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.HelpIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.StopIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.NavigateHomeIntent",
+                  "samples": []
+              },
+              {
+                "name": "AMAZON.FallbackIntent",
+                "samples": []
+              },
+              {
+                  "name": "SetUpDeviceIntent",
+                  "slots": [
+                      {
+                          "name": "device",
+                          "type": "AMAZON.DeviceType"
+                      },
+                      {
+                          "name": "location",
+                          "type": "AMAZON.Room"
+                      }
+                  ],
+                  "samples": [
+                      "set up my {device}",
+                      "set up my {location} {device}"
+                  ]
+              },
+              {
+                  "name": "SetUpIRFrequencyIntent",
+                  "slots": [
+                      {
+                          "name": "frequency",
+                          "type": "frequency"
+                      }
+                  ],
+                  "samples": [
+                      "{frequency}"
+                  ]
+              },
+              {
+                "name": "SetUpActionIntent",
+                "slots": [
+                    {
+                        "name": "action",
+                        "type": "action"
+                    }
+                ],
+                "samples": [
+                    "it should {action}",
+                    "the device should {action}"
+                ]
+              }
+          ]
+      }
+  }
+}
