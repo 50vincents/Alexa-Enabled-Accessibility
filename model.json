@@ -4,6 +4,10 @@
           "invocationName": "skill blaster",
           "intents": [
               {
+                  "name": "AMAZON.FallbackIntent",
+                  "samples": []
+              },
+              {
                   "name": "AMAZON.CancelIntent",
                   "samples": []
               },
@@ -20,10 +24,6 @@
                   "samples": []
               },
               {
-                "name": "AMAZON.FallbackIntent",
-                "samples": []
-              },
-              {
                   "name": "SetUpDeviceIntent",
                   "slots": [
                       {
@@ -36,8 +36,8 @@
                       }
                   ],
                   "samples": [
-                      "set up my {device}",
-                      "set up my {location} {device}"
+                      "set up my {location} {device}",
+                      "set up my {device}"
                   ]
               },
               {
@@ -45,7 +45,7 @@
                   "slots": [
                       {
                           "name": "frequency",
-                          "type": "frequency"
+                          "type": ""
                       }
                   ],
                   "samples": [
@@ -53,19 +53,70 @@
                   ]
               },
               {
-                "name": "SetUpActionIntent",
-                "slots": [
-                    {
-                        "name": "action",
-                        "type": "action"
-                    }
-                ],
-                "samples": [
-                    "it should {action}",
-                    "the device should {action}"
-                ]
+                  "name": "SetUpActionIntent",
+                  "slots": [
+                      {
+                          "name": "action",
+                          "type": ""
+                      }
+                  ],
+                  "samples": [
+                      "the device should {action}",
+                      "it should {action}"
+                  ]
               }
-          ]
-      }
+          ],
+          "types": []
+      },
+      "dialog": {
+          "intents": [
+              {
+                  "name": "SetUpDeviceIntent",
+                  "confirmationRequired": false,
+                  "prompts": {},
+                  "slots": [
+                      {
+                          "name": "device",
+                          "type": "AMAZON.DeviceType",
+                          "confirmationRequired": false,
+                          "elicitationRequired": true,
+                          "prompts": {
+                              "elicitation": "Elicit.Slot.844409698254.1191706866843"
+                          }
+                      },
+                      {
+                          "name": "location",
+                          "type": "AMAZON.Room",
+                          "confirmationRequired": false,
+                          "elicitationRequired": true,
+                          "prompts": {
+                              "elicitation": "Elicit.Slot.844409698254.297508447504"
+                          }
+                      }
+                  ]
+              }
+          ],
+          "delegationStrategy": "ALWAYS"
+      },
+      "prompts": [
+          {
+              "id": "Elicit.Slot.844409698254.297508447504",
+              "variations": [
+                  {
+                      "type": "PlainText",
+                      "value": "Where is your device located?"
+                  }
+              ]
+          },
+          {
+              "id": "Elicit.Slot.844409698254.1191706866843",
+              "variations": [
+                  {
+                      "type": "PlainText",
+                      "value": "Which device would you like to configure?"
+                  }
+              ]
+          }
+      ]
   }
 }
