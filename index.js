@@ -16,22 +16,23 @@ AWS.config.update({
 
 const docClient = new AWS.DynamoDB.DocumentClient();
 
-const table = "frequencies";
-const params = {
-    TableName:table,
-    Item:{
-        "frequency_level": frequency,
-    }
-};
-
-docClient.put(params, function(err, data) {
-    if (err) {
-        console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
-    } else {
-        console.log("Added item:", JSON.stringify(data, null, 2));
-    }
-});
-
+function addToDb(frequency) {
+    const table = "frequencies";
+    const params = {
+        TableName:table,
+        Item:{
+            "frequency_level": frequency,
+        }
+    };
+    
+    docClient.put(params, function(err, data) {
+        if (err) {
+            console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
+        } else {
+            console.log("Added item:", JSON.stringify(data, null, 2));
+        }
+    });
+}
 
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
@@ -39,16 +40,14 @@ const LaunchRequestHandler = {
   },
   handle(handlerInput) {
       const speakOutput = 'Welcome. Which device would you like to set up?';
-      //const repromptText = 'I was born Nov. 6th, 2014. When were you born?';
    
       return handlerInput.responseBuilder
           .speak(speakOutput)
-      //    .reprompt(repromptText)
           .getResponse();
   }
 };
 
-// 
+// Gets the device and location of device to set up
 const SetUpDeviceIntentHandler = {
   canHandle(handlerInput) {
       return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -59,11 +58,11 @@ const SetUpDeviceIntentHandler = {
       const location = handlerInput.requestEnvelope.request.intent.slots.location.value;
 
       const speakOutput = `Great, let's set up your ${location} ${device}. Aim the remote at the IR device and press any button.`;      
-      //const repromptOutput = handlerInput.t('WELCOME_REPROMPT_MSG');
+      const repromptOutput = `Please aim the remote at the IR device.`;
 
       return handlerInput.responseBuilder
           .speak(speakOutput)
-         // .reprompt(repromptOutput)
+          .reprompt(repromptOutput)
           .getResponse();
   }
 };
@@ -75,16 +74,20 @@ const SetUpIRFrequencyIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'SetUpIRFrequencyIntent';
       },
       handle(handlerInput) {
+          const frequency = handlerInput.requestEnvelope.request.intent.slots.frequency.value;
+          addToDb(frequency);
+
           const speakOutput = `Got it, what does this button do?`;      
-          //const repromptOutput = handlerInput.t('WELCOME_REPROMPT_MSG');
+          const repromptOutput = `What action should this button do?`;
     
           return handlerInput.responseBuilder
               .speak(speakOutput)
-            // .reprompt(repromptOutput)
+              .reprompt(repromptOutput)
               .getResponse();
       }
 };
 
+// Should take in action of specified button and prompt user for more actions
 const SetUpActionIntentHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -100,7 +103,6 @@ const SetUpActionIntentHandler = {
           .getResponse();
   }
 };
-
 
 /**
  * Handles AMAZON.HelpIntent requests sent by Alexa 
