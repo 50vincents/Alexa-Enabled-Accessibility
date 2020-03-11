@@ -1,122 +1,172 @@
 {
-  "interactionModel": {
-      "languageModel": {
-          "invocationName": "skill blaster",
-          "intents": [
-              {
-                  "name": "AMAZON.FallbackIntent",
-                  "samples": []
-              },
-              {
-                  "name": "AMAZON.CancelIntent",
-                  "samples": []
-              },
-              {
-                  "name": "AMAZON.HelpIntent",
-                  "samples": []
-              },
-              {
-                  "name": "AMAZON.StopIntent",
-                  "samples": []
-              },
-              {
-                  "name": "AMAZON.NavigateHomeIntent",
-                  "samples": []
-              },
-              {
-                  "name": "SetUpDeviceIntent",
-                  "slots": [
-                      {
-                          "name": "device",
-                          "type": "AMAZON.DeviceType"
-                      },
-                      {
-                          "name": "location",
-                          "type": "AMAZON.Room"
-                      }
-                  ],
-                  "samples": [
-                      "set up my {location} {device}",
-                      "set up my {device}"
-                  ]
-              },
-              {
-                  "name": "SetUpIRFrequencyIntent",
-                  "slots": [
-                      {
-                          "name": "frequency",
-                          "type": ""
-                      }
-                  ],
-                  "samples": [
-                      "{frequency}"
-                  ]
-              },
-              {
-                  "name": "SetUpActionIntent",
-                  "slots": [
-                      {
-                          "name": "action",
-                          "type": ""
-                      }
-                  ],
-                  "samples": [
-                      "the device should {action}",
-                      "it should {action}"
-                  ]
-              }
-          ],
-          "types": []
-      },
-      "dialog": {
-          "intents": [
-              {
-                  "name": "SetUpDeviceIntent",
-                  "confirmationRequired": false,
-                  "prompts": {},
-                  "slots": [
-                      {
-                          "name": "device",
-                          "type": "AMAZON.DeviceType",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.844409698254.1191706866843"
-                          }
-                      },
-                      {
-                          "name": "location",
-                          "type": "AMAZON.Room",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.844409698254.297508447504"
-                          }
-                      }
-                  ]
-              }
-          ],
-          "delegationStrategy": "ALWAYS"
-      },
-      "prompts": [
-          {
-              "id": "Elicit.Slot.844409698254.297508447504",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "Where is your device located?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.844409698254.1191706866843",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "Which device would you like to configure?"
-                  }
-              ]
-          }
-      ]
-  }
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "skill blaster",
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "SetUpDeviceIntent",
+                    "slots": [
+                        {
+                            "name": "device",
+                            "type": "AMAZON.DeviceType"
+                        },
+                        {
+                            "name": "location",
+                            "type": "AMAZON.Room"
+                        }
+                    ],
+                    "samples": [
+                        "set up my {location} {device}",
+                        "set up my {device}"
+                    ]
+                },
+                {
+                    "name": "SetUpIRFrequencyIntent",
+                    "slots": [
+                        {
+                            "name": "frequency",
+                            "type": "AMAZON.Room"
+                        }
+                    ],
+                    "samples": [
+                        "the frequency is {frequency}"
+                    ]
+                },
+                {
+                    "name": "SetUpActionIntent",
+                    "slots": [
+                        {
+                            "name": "action",
+                            "type": "AMAZON.Airport"
+                        }
+                    ],
+                    "samples": [
+                        "the device should {action}",
+                        "it should {action}"
+                    ]
+                }
+            ],
+            "types": []
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "SetUpDeviceIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "device",
+                            "type": "AMAZON.DeviceType",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.844409698254.1191706866843"
+                            }
+                        },
+                        {
+                            "name": "location",
+                            "type": "AMAZON.Room",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.844409698254.297508447504"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "SetUpActionIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "action",
+                            "type": "AMAZON.Airport",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.688210150727.1074034424254"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "SetUpIRFrequencyIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "frequency",
+                            "type": "AMAZON.Room",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.782385987811.800571187547"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.844409698254.297508447504",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Where is your device located?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.844409698254.1191706866843",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Which device would you like to configure?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.782385987811.800571187547",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What is the frequency?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.688210150727.1074034424254",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What is the action?"
+                    }
+                ]
+            }
+        ]
+    }
 }
