@@ -1,7 +1,8 @@
 const express = require('express');
 const { ExpressAdapter } = require('ask-sdk-express-adapter');
 const Alexa = require('ask-sdk-core');
-const AWS = require('aws-sdk')
+const AWS = require('aws-sdk');
+const nodeLIRC = require('node-lirc');
 const port = process.env.PORT || 3000;
 const app = express();
 
@@ -15,6 +16,7 @@ AWS.config.update({
 });
 
 const docClient = new AWS.DynamoDB.DocumentClient();
+nodeLIRC.init();
 
 function addToDb(frequency) {
     const table = "frequencies";
@@ -40,9 +42,11 @@ const LaunchRequestHandler = {
   },
   handle(handlerInput) {
       const speakOutput = 'Welcome. Which device would you like to set up?';
+      const repromptOutput = 'I\'m sorry, which device would you like to set up?';
    
       return handlerInput.responseBuilder
           .speak(speakOutput)
+          .reprompt(repromptOutput)
           .getResponse();
   }
 };
